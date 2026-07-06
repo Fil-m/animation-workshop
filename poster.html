@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анімаційна майстерня — Афіша А4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            color: #000000;
+            background: #ffffff;
+            line-height: 1.4;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        
+        @page {
+            size: A4;
+            margin: 12mm 15mm;
+        }
+        
+        .poster-container {
+            width: 100%;
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Header styling */
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #000;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+        .header-badge {
+            display: inline-block;
+            border: 2px solid #000;
+            padding: 4px 12px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+        .header .tagline {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Main content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .section-box {
+            border: 2px solid #000;
+            padding: 12px 16px;
+            background: #ffffff;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        /* Info items */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .info-item {
+            text-align: center;
+        }
+        .info-item strong {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .info-item p {
+            font-size: 12.5px;
+            line-height: 1.25;
+        }
+
+        /* Steps */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+        .step-item {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #000;
+            color: #fff;
+            font-weight: 800;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .step-item h4 {
+            font-size: 11.5px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .step-item p {
+            font-size: 10px;
+            color: #444;
+            line-height: 1.2;
+        }
+
+        /* Details */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 16px;
+        }
+        .detail-item {
+            font-size: 12.5px;
+        }
+        .detail-item strong {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        /* Security Box */
+        .security-box {
+            border: 2px dashed #000;
+            background: #fdfdfd;
+            padding: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .security-icon {
+            font-size: 20px;
+            line-height: 1;
+        }
+        .security-text h3 {
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .security-text p {
+            font-size: 12.5px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* QR section */
+        .qr-section {
+            border-top: 2px solid #000;
+            padding-top: 12px;
+            margin-top: 10px;
+        }
+        .qr-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .qr-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+        .qr-card {
+            text-align: center;
+            max-width: 150px;
+        }
+        .qr-image-wrapper {
+            border: 2px solid #000;
+            padding: 4px;
+            background: #fff;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+        .qr-card img {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+        .qr-card h4 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .qr-card p {
+            font-size: 10.5px;
+            color: #444;
+            line-height: 1.2;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 12px;
+            border-top: 1px solid #ddd;
+            padding-top: 6px;
+        }
+        .impressum {
+            font-size: 9px;
+            font-weight: normal;
+            color: #666;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Print controls banner */
+        .no-print-banner {
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .no-print-banner button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .no-print-banner button:hover {
+            background: #333;
+        }
+
+        @media print {
+            .no-print-banner {
+                display: none !important;
+            }
+            body {
+                padding: 0;
+            }
+            .poster-container {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print-banner">
+        <strong>Афіша Анімаційної майстерні підготовлена до друку на форматі A4 (чорно-біла).</strong><br>
+        Відкрийте цю сторінку в браузері, натисніть кнопку нижче або комбінацію клавіш <strong>Ctrl + P</strong> і виберіть принтер або збереження в PDF.<br>
+        <button onclick="window.print()">Друк / Зберегти як PDF</button>
+    </div>
+
+    <div class="poster-container">
+        <div class="header">
+            <div class="header-badge">📍 Karlsruhe · Безкоштовно · Для батьків та дітей</div>
+            <h1>Анімаційна майстерня</h1>
+            <p class="tagline">Батьки — найкращі вчителі. Анімація — інструмент.</p>
+        </div>
+
+        <div class="main-content">
+            <div class="section-box">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>📅 Розклад</strong>
+                        <p>2 суботи на місяць<br>2 зустрічі по 2 години</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>📍 Локація</strong>
+                        <p>Кав'ярня <i>Ja, genau!</i><br>Hirschstraße, 76133 KA</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>👶 Учасники</strong>
+                        <p>Діти 6–12 років<br>у парі з батьками</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <div class="section-title">Як усе проходить?</div>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <h4>Сценарій</h4>
+                        <p>Вигадуємо сюжет та персонажів.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <h4>Декорації</h4>
+                        <p>Будуємо сцену з LEGO чи пластиліну.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <h4>Зйомка</h4>
+                        <p>Робимо покадрові знімки stop-motion.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">4</div>
+                        <h4>Монтаж</h4>
+                        <p>Додаємо музику, звуки та титри.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">5</div>
+                        <h4>Показ</h4>
+                        <p>Дивимося готовий мультик разом!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <div class="section-title">Чому це важливо та корисно?</div>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <strong>🧠 Розвиток мислення та логіки</strong>
+                        Створення анімації вчить планувати дії, бачити причинно-наслідкові зв'язки та логічно мислити.
+                    </div>
+                    <div class="detail-item">
+                        <strong>🗣️ Мовлення та моторика</strong>
+                        Придумування діалогів та озвучка розвивають мовлення. Мікрорухи фігурок тренують дрібну моторику.
+                    </div>
+                    <div class="detail-item">
+                        <strong>📱 Спільний час без пасивного екрану</strong>
+                        Вчимося перетворювати звичайний смартфон на корисний інструмент для сумісної родинної творчості.
+                    </div>
+                    <div class="detail-item">
+                        <strong>🛠️ Що потрібно мати з собою?</strong>
+                        Тільки телефон із додатком <i>Stop Motion Studio</i>. Усі матеріали для сцени ми надаємо на місці.
+                    </div>
+                </div>
+            </div>
+
+            <div class="security-box">
+                <div class="security-icon">🔒</div>
+                <div class="security-text">
+                    <h3>Безпека неповнолітніх та Bildrechte (DSGVO)</h3>
+                    <p>Зйомка дітей не проводиться без згоди батьків. Усі створені відеоролики та фотоматеріали залишаються виключною власністю родин і не публікуються в інтернеті без вашої письмової згоди.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="qr-section">
+            <div class="qr-title">Усього 6–7 місць (за попередньою реєстрацією). Запишіться заздалегідь:</div>
+            <div class="qr-grid">
+                <div class="qr-card">
+                    <div class="qr-image-wrapper">
+                        <img src="assets/qr_website.png" alt="QR Website">
+                    </div>
+                    <h4>Сайт майстерні</h4>
+                    <p>Приклади готових мультиків та розгорнуті деталі</p>
+                </div>
+                
+                <div class="qr-card">
+                    <div class="qr-image-wrapper">
+                        <img src="assets/qr_organizer.png" alt="QR Contact">
+                    </div>
+                    <h4>Записатися</h4>
+                    <p>Напишіть організатору в Telegram: @robosapiens8</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            Анімаційна майстерня для батьків та дітей · Karlsruhe · Приватна некомерційна ініціатива
+            <span class="impressum">Impressum: Taras Moskalenko, Goethestraße 17, 76227 Karlsruhe | moskalenko.t.o@gmail.com</span>
+        </div>
+    </div>
+
+</body>
+</html>
